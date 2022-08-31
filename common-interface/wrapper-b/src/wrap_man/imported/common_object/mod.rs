@@ -37,7 +37,7 @@ impl CommonObject {
         }
     }
 
-    pub fn to_buffer(args: &CommonObject) -> Result<Vec<u8>, EncodeError> {
+    pub fn to_buffer(args: CommonObject) -> Result<Vec<u8>, EncodeError> {
         serialize_common_object(args).map_err(|e| EncodeError::TypeWriteError(e.to_string()))
     }
 
@@ -45,7 +45,7 @@ impl CommonObject {
         deserialize_common_object(args).map_err(|e| DecodeError::TypeReadError(e.to_string()))
     }
 
-    pub fn write<W: Write>(args: &CommonObject, writer: &mut W) -> Result<(), EncodeError> {
+    pub fn write<W: Write>(args: CommonObject, writer: &mut W) -> Result<(), EncodeError> {
         write_common_object(args, writer).map_err(|e| EncodeError::TypeWriteError(e.to_string()))
     }
 

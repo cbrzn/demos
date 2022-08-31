@@ -17,7 +17,7 @@ pub fn abstract_method_wrapped(args: &[u8], env_size: u32) -> Vec<u8> {
                 arg1: args.arg1,
                 arg2: args.arg2,
             });
-            serialize_abstract_method_result(&result).unwrap()
+            serialize_abstract_method_result(result).unwrap()
         }
         Err(e) => {
             panic!("{}", e.to_string())

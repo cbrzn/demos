@@ -67,7 +67,7 @@ pub fn deserialize_abstract_method_args(args: &[u8]) -> Result<ArgsAbstractMetho
     })
 }
 
-pub fn serialize_abstract_method_result(result: &CommonObject) -> Result<Vec<u8>, EncodeError> {
+pub fn serialize_abstract_method_result(result: CommonObject) -> Result<Vec<u8>, EncodeError> {
     let mut encoder_context = Context::new();
     encoder_context.description = "Serializing (encoding) module-type: abstract_method".to_string();
     let mut encoder = WriteEncoder::new(&[], encoder_context);
@@ -75,9 +75,9 @@ pub fn serialize_abstract_method_result(result: &CommonObject) -> Result<Vec<u8>
     Ok(encoder.get_buffer())
 }
 
-pub fn write_abstract_method_result<W: Write>(result: &CommonObject, writer: &mut W) -> Result<(), EncodeError> {
+pub fn write_abstract_method_result<W: Write>(result: CommonObject, writer: &mut W) -> Result<(), EncodeError> {
     writer.context().push("abstractMethod", "CommonObject", "writing result");
-    CommonObject::write(&result, writer)?;
+    CommonObject::write(result, writer)?;
     writer.context().pop();
     Ok(())
 }

@@ -16,7 +16,7 @@ use crate::CommonObject;
 
 use crate::CommonNestedObject;
 
-pub fn serialize_common_object(args: &CommonObject) -> Result<Vec<u8>, EncodeError> {
+pub fn serialize_common_object(args: CommonObject) -> Result<Vec<u8>, EncodeError> {
     let mut encoder_context = Context::new();
     encoder_context.description = "Serializing (encoding) imported object-type: CommonObject".to_string();
     let mut encoder = WriteEncoder::new(&[], encoder_context);
@@ -24,7 +24,7 @@ pub fn serialize_common_object(args: &CommonObject) -> Result<Vec<u8>, EncodeErr
     Ok(encoder.get_buffer())
 }
 
-pub fn write_common_object<W: Write>(args: &CommonObject, writer: &mut W) -> Result<(), EncodeError> {
+pub fn write_common_object<W: Write>(args: CommonObject, writer: &mut W) -> Result<(), EncodeError> {
     writer.write_map_length(&3)?;
     writer.context().push("prop1", "String", "writing property");
     writer.write_string("prop1")?;
@@ -36,7 +36,7 @@ pub fn write_common_object<W: Write>(args: &CommonObject, writer: &mut W) -> Res
     writer.context().pop();
     writer.context().push("prop3", "CommonNestedObject", "writing property");
     writer.write_string("prop3")?;
-    CommonNestedObject::write(&args.prop3, writer)?;
+    CommonNestedObject::write(args.prop3, writer)?;
     writer.context().pop();
     Ok(())
 }

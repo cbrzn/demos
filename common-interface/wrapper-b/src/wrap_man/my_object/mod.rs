@@ -35,7 +35,7 @@ impl MyObject {
         }
     }
 
-    pub fn to_buffer(args: &MyObject) -> Result<Vec<u8>, EncodeError> {
+    pub fn to_buffer(args: MyObject) -> Result<Vec<u8>, EncodeError> {
         serialize_my_object(args).map_err(|e| EncodeError::TypeWriteError(e.to_string()))
     }
 
@@ -43,7 +43,7 @@ impl MyObject {
         deserialize_my_object(args).map_err(|e| DecodeError::TypeReadError(e.to_string()))
     }
 
-    pub fn write<W: Write>(args: &MyObject, writer: &mut W) -> Result<(), EncodeError> {
+    pub fn write<W: Write>(args: MyObject, writer: &mut W) -> Result<(), EncodeError> {
         write_my_object(args, writer).map_err(|e| EncodeError::TypeWriteError(e.to_string()))
     }
 

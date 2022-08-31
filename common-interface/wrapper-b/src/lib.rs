@@ -1,6 +1,6 @@
-pub mod wrap_man;
-pub use wrap_man::*;
-use wrap_man::imported::{ CommonObject, CommonNestedObject };
+pub mod wrap;
+pub use wrap::*;
+use wrap::imported::{ CommonObject, CommonNestedObject };
 
 pub fn abstract_method(
     args: ArgsAbstractMethod

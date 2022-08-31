@@ -31,7 +31,7 @@ impl CommonNestedObject {
         }
     }
 
-    pub fn to_buffer(args: &CommonNestedObject) -> Result<Vec<u8>, EncodeError> {
+    pub fn to_buffer(args: CommonNestedObject) -> Result<Vec<u8>, EncodeError> {
         serialize_common_nested_object(args).map_err(|e| EncodeError::TypeWriteError(e.to_string()))
     }
 
@@ -39,7 +39,7 @@ impl CommonNestedObject {
         deserialize_common_nested_object(args).map_err(|e| DecodeError::TypeReadError(e.to_string()))
     }
 
-    pub fn write<W: Write>(args: &CommonNestedObject, writer: &mut W) -> Result<(), EncodeError> {
+    pub fn write<W: Write>(args: CommonNestedObject, writer: &mut W) -> Result<(), EncodeError> {
         write_common_nested_object(args, writer).map_err(|e| EncodeError::TypeWriteError(e.to_string()))
     }
 
