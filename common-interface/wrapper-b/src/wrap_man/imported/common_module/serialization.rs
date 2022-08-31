@@ -21,7 +21,7 @@ pub struct ArgsAbstractMethod {
     pub arg2: u32,
 }
 
-pub fn serialize_abstract_method_args(args: argsAbstractMethod) -> Result<Vec<u8>, EncodeError> {
+pub fn serialize_abstract_method_args(args: ArgsAbstractMethod) -> Result<Vec<u8>, EncodeError> {
     let mut encoder_context = Context::new();
     encoder_context.description = "Serializing (encoding) imported module-type: abstract_method".to_string();
     let mut encoder = WriteEncoder::new(&[], encoder_context);

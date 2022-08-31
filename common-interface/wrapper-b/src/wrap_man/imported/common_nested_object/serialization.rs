@@ -14,7 +14,7 @@ use polywrap_wasm_rs::{
 };
 use crate::CommonNestedObject;
 
-pub fn serialize_common_nested_object(args: &CommonNestedObject) -> Result<Vec<u8>, EncodeError> {
+pub fn serialize_common_nested_object(args: CommonNestedObject) -> Result<Vec<u8>, EncodeError> {
     let mut encoder_context = Context::new();
     encoder_context.description = "Serializing (encoding) imported object-type: CommonNestedObject".to_string();
     let mut encoder = WriteEncoder::new(&[], encoder_context);
@@ -22,7 +22,7 @@ pub fn serialize_common_nested_object(args: &CommonNestedObject) -> Result<Vec<u
     Ok(encoder.get_buffer())
 }
 
-pub fn write_common_nested_object<W: Write>(args: &CommonNestedObject, writer: &mut W) -> Result<(), EncodeError> {
+pub fn write_common_nested_object<W: Write>(args: CommonNestedObject, writer: &mut W) -> Result<(), EncodeError> {
     writer.write_map_length(&1)?;
     writer.context().push("prop", "String", "writing property");
     writer.write_string("prop")?;
